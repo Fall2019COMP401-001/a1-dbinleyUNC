@@ -33,14 +33,18 @@ public class A1Jedi {
 			//loop iterates through all the items that each customer buys, 
 			// by using subCount to determine how many they bought
 			int subCount = scan.nextInt();
+			String[] itemArray2 = new String[subCount];
 			for (int b = 0; b<subCount;b++) {
 				int howMany = scan.nextInt();
 				
 				//correspondingIndex is used to save the index in the parallel arrays that corresponds to the next scanned string 
 				//it is then used to add to the frequency that the item is bought and add to the amount of customers who bought it
-				int correspondingIndex = A1Adept.findIndexOfString(scan.next(), itemNames);
+				String s = scan.next();
+				int correspondingIndex = A1Adept.findIndexOfString(s, itemNames);
 				itemFrequency[correspondingIndex] += howMany;
+				if (!isStringInArray(s,itemArray2))
 				customerFrequency[correspondingIndex]++;
+				itemArray2[b] = s;
 				}
 		}
 		
@@ -55,5 +59,14 @@ public class A1Jedi {
 			else
 				System.out.println(customerFrequency[b] + " customers bought " + itemFrequency[b] + " " + itemNames[b]);
 		}
+	}
+	static boolean isStringInArray(String s, String[] items) {
+		boolean bool = false;
+		for (int c = 0; c< items.length; c++) {
+			if (s.equals(items[c])) {
+				bool = true;
+			}
+		}
+		return bool;
 	}
 }
